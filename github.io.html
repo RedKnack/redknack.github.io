@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>RedKnack Interactive – Dev Tools</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Tools by RedKnack Interactive, created while building our games." />
+  <style>:root {
+  --rk-bg: #0f0f12;
+  --rk-surface: #17171b;
+  --rk-card: #1c1c21;
+  --rk-border: #26262c;
+  --rk-text: #f5f5f5;
+  --rk-muted: #9a9a9a;
+  --rk-accent: #e5343f;
+  --rk-radius: 14px;
+  --rk-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--rk-bg);
+  color: var(--rk-text);
+  font-family: var(--rk-font);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--rk-accent);
+  text-decoration: none;
+}
+
+header {
+  background: rgba(23,23,27,0.85);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--rk-border);
+}
+
+.nav {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0.7rem 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  color: var(--rk-text);
+}
+
+.brand-circle {
+  width: 30px;
+  height: 30px;
+  background: var(--rk-accent);
+  border-radius: 10px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.1rem;
+  font-size: 0.9rem;
+}
+
+.nav-links a {
+  color: var(--rk-muted);
+  transition: color 0.15s ease;
+}
+
+.nav-links a:hover {
+  color: var(--rk-accent);
+}
+
+.hero {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 3.5rem 1.3rem 3rem;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.4rem;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(229, 52, 63, 0.15);
+  color: var(--rk-accent);
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: clamp(2.3rem, 4vw, 3.2rem);
+  margin: 0 0 0.6rem;
+  color: var(--rk-text);
+}
+
+.hero p {
+  color: var(--rk-muted);
+  max-width: 560px;
+}
+
+.hero-btns {
+  margin-top: 1.3rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--rk-accent);
+  color: #fff;
+  border: none;
+  padding: 0.55rem 0.9rem;
+  border-radius: 9px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: #ff4d59;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--rk-border);
+  color: var(--rk-text);
+  border-radius: 9px;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--rk-surface);
+}
+
+.hero-card {
+  background: var(--rk-card);
+  border: 1px solid var(--rk-border);
+  border-radius: 16px;
+  padding: 1.1rem 1.15rem;
+  align-self: center;
+  box-shadow: 0 14px 35px rgba(0,0,0,0.35);
+}
+
+.hero-card h3 {
+  margin-top: 0;
+  color: var(--rk-text);
+}
+
+.hero-card p {
+  color: var(--rk-muted);
+}
+
+section {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 1rem 1.3rem 3rem;
+}
+
+.section-title {
+  font-size: 1.35rem;
+  margin-bottom: 0.3rem;
+  color: var(--rk-text);
+}
+
+.section-sub {
+  color: var(--rk-muted);
+  max-width: 680px;
+  margin-bottom: 1.4rem;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.15rem;
+}
+
+.tool-card {
+  background: var(--rk-card);
+  border: 1px solid var(--rk-border);
+  border-radius: var(--rk-radius);
+  padding: 1rem 1rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.tool-card:hover {
+  border-color: rgba(229,52,63,0.5);
+  transform: translateY(-3px);
+}
+
+.tool-type {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--rk-accent);
+  font-weight: 600;
+}
+
+.tool-title {
+  font-size: 1rem;
+  font-weight: 650;
+  color: var(--rk-text);
+}
+
+.tool-desc {
+  font-size: 0.85rem;
+  color: var(--rk-muted);
+}
+
+.tool-meta {
+  font-size: 0.73rem;
+  color: var(--rk-muted);
+}
+
+.tool-code {
+  background: #0b0b0e;
+  color: #e2e8f0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 0.7rem;
+  border-radius: 10px;
+  padding: 0.55rem 0.6rem;
+  overflow-x: auto;
+  white-space: pre;
+  border: 1px solid var(--rk-border);
+}
+
+.tool-link {
+  margin-top: 0.2rem;
+  font-size: 0.78rem;
+}
+
+footer {
+  border-top: 1px solid var(--rk-border);
+  text-align: center;
+  padding: 2rem 1rem 3rem;
+  color: var(--rk-muted);
+  font-size: 0.75rem;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .nav-links {
+    display: none;
+  }
+}
+</style>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-circle"></div>
+        RedKnack Interactive
+      </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#tools">Tools</a>
+        <a href="https://redknack.com">Main Site</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <div>
+      <span class="badge">We do games — and we share tools.</span>
+      <h1>RedKnack Dev Tools</h1>
+      <p>
+        While building our games, we keep creating small utilities, console helpers and
+        server tools. This page is our public drop-off for those. Grab, fork, improve.
+      </p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="#tools">View tools</a>
+        <a class="btn-secondary" href="https://github.com/RedKnack" target="_blank" rel="noopener">GitHub org →</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>What is this?</h3>
+      <p>
+        A lightweight companion to <strong>redknack.com</strong>, focused on technical stuff.
+        If it helped us automate something or find a bug faster, it might help you too.
+      </p>
+      <p style="font-size:.75rem;color:var(--rk-muted);margin-bottom:0;">
+        Copy a tool card below to add more items later.
+      </p>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">Why we publish internal tools</h2>
+    <p class="section-sub">
+      RedKnack Interactive is about building worlds, stories and cozy experiences — but behind the scenes there’s a ton
+      of scripting, log reading
+      and content management. Instead of letting those helper scripts rot in a folder, we publish the useful ones here.
+    </p>
+  </section>
+
+  <section id="tools">
+    <h2 class="section-title">Tools</h2>
+    <p class="section-sub">Current public tools from our GitHub repositories.</p>
+
+    <div class="tools-grid">
+      <!-- TOOL 1: FolderStateConsole -->
+      <article class="tool-card">
+        <div class="tool-type">C# / Console</div>
+        <div class="tool-title">FolderStateConsole</div>
+        <p class="tool-desc">
+          A console tool to capture, compare or track the state of a folder during development.
+          Useful when assets, configs or build outputs change and you want a reproducible snapshot.
+        </p>
+        <p class="tool-meta">
+          Repo: <a href="https://github.com/RedKnack/FolderStateConsole" target="_blank"
+            rel="noopener">RedKnack/FolderStateConsole</a>
+        </p>
+        <div class="tool-code">
+          dotnet run -- "C:\path\to\watch"
+        </div>
+        <p class="tool-link">
+          Source: <a href="https://github.com/RedKnack/FolderStateConsole/blob/main/Program.cs" target="_blank"
+            rel="noopener">Program.cs</a>
+        </p>
+      </article>
+
+      <!-- TOOL 2: Log Analyzer & Auto Blocklist Generator -->
+      <article class="tool-card">
+        <div class="tool-type">C# / Server</div>
+        <div class="tool-title">Log Analyzer &amp; Auto Blocklist Generator</div>
+        <p class="tool-desc">
+          Scans Apache/Nginx logs for IPs that produce too many errors in a row and generates:
+          CSV output, an IP list, and even a ready-to-drop <code>.htaccess</code> blocklist.
+          Built for our own servers — now shared.
+        </p>
+        <p class="tool-meta">
+          Repo: <a href="https://github.com/RedKnack/Log-Analyzer-Auto-Blocklist-Generator" target="_blank"
+            rel="noopener">RedKnack/Log-Analyzer-Auto-Blocklist-Generator</a>
+        </p>
+        <div class="tool-code">
+          dotnet run -- "C:\logs" --min 4 --iplist "C:\temp\banlist.txt" --htaccess "C:\web\.htaccess"
+        </div>
+        <p class="tool-link">
+          Source: <a href="https://github.com/RedKnack/Log-Analyzer-Auto-Blocklist-Generator/blob/main/Program.cs"
+            target="_blank" rel="noopener">Program.cs</a>
+        </p>
+      </article>
+
+      <!-- COPY/PASTE TEMPLATE FOR MORE TOOLS DO NOT ABUSE, CARL!-->
+      <article class="tool-card">
+        <div class="tool-type">Tool</div>
+        <div class="tool-title">[The Next Tool (This is a placeholder btw, ignore it)]</div>
+        <p class="tool-desc">
+          Short description of the tool, why we built it during game development, and what problem it solves.
+        </p>
+        <p class="tool-meta">
+          Repo: <a href="https://github.com/RedKnack" target="_blank" rel="noopener">GitHub link here</a>
+        </p>
+        <div class="tool-code">
+          # usage / install / run
+          tool-command-thingie --flag
+        </div>
+        <p class="tool-link">
+          Source: <a href="#" target="_blank" rel="noopener">Program.cs</a>
+        </p>
+      </article>
+      <!-- /TEMPLATE -->
+    </div>
+  </section>
+
+  <footer>
+    © 2025 RedKnack Interactive. This page is only for tool sharing.
+  </footer>
+</body>
+
+</html>
